@@ -1,45 +1,52 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recepie {
     String name;
-    List<Food> ingredients;
+    List<Ingridient> ingredients;
 
-    public Recepie(List<Food> ingredients, String name) {
+    public Recepie(List<Ingridient> ingredients, String name) {
         this.ingredients = ingredients;
         this.name = name;
     }
-
+    public Recepie(String name) {
+        this.ingredients = new ArrayList<>();
+        this.name = name;
+    }
+    public void addIngridient(Ingridient ingridient) {
+        ingredients.add(ingridient);
+    }
     public int calculateTotalWeight() {
         int totalweight = 0;
-        for (Food ingredient : ingredients) {
-            totalweight += ingredient.weight;
+        for (Ingridient ingredient : ingredients) {
+            totalweight += ingredient.getWeight();
         }
         return totalweight;
     }
     public double calculateCalories() {
         double totalcalories = 0;
-        for (Food ingredient : ingredients) {
+        for (Ingridient ingredient : ingredients) {
             totalcalories += ingredient.calculateCalories();
         }
         return totalcalories;
     }
     public double calculateProtein() {
         double totalprotein = 0;
-        for (Food ingredient : ingredients) {
+        for (Ingridient ingredient : ingredients) {
             totalprotein += ingredient.calculateProtein();
         }
         return totalprotein;
     }
     public double calculateFat() {
         double totalfat = 0;
-        for (Food ingredient : ingredients) {
+        for (Ingridient ingredient : ingredients) {
             totalfat += ingredient.calculateFat();
         }
         return totalfat;
     }
     public double calculateCarbs() {
         double totalcarbs = 0;
-        for (Food ingredient : ingredients) {
+        for (Ingridient ingredient : ingredients) {
             totalcarbs += ingredient.calculateCarbs();
         }
         return totalcarbs;
@@ -60,8 +67,8 @@ public class Recepie {
     public void printRecepie() {
         System.out.println("Recepie: " + name);
         System.out.println("Ingredients:\n");
-        for (Food ingredient : ingredients) {
-            System.out.println(ingredient.name + " " + ingredient.weight + "g");
+        for (Ingridient ingredient : ingredients) {
+            System.out.println(ingredient.name + " " + ingredient.getWeight() + "g");
         }
         System.out.println("\nTotal weight: " + calculateTotalWeight() + "g");
         System.out.println("Total calories: " + calculateCalories() + "kcal");
